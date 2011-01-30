@@ -1,0 +1,3 @@
+[submodule "ext/yuitest"]
+	path = ext/yuitest
+	url = https://github.com/yui/yuitest.git
