@@ -3,10 +3,11 @@
 <project name="jquery-email-address-munging-plugin" default="build" basedir=".">
     <property name="VERSION" value="0.1" />
     
+    <property environment="env"/>
     <property name="BUILD_DIR" value="build" />
     <property name="DOCS_DIR" value="docs" />
     <property name="SOURCE_DIR" value="src" />
-    <property name="YUI_COMPRESSOR" value="/Users/ajones/bin/yuicompressor-2.4.2.jar" />
+    <property name="YUI_COMPRESSOR" value="${env.HOME}/bin/yuicompressor-2.4.2.jar" />
 
     <target name="build" depends="clean, compile_haml, compile_scss, bundle_javascript, compress_javascript, copy_misc_files, zip" />
 
