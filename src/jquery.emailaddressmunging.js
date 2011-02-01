@@ -13,8 +13,10 @@
             
             // copy attributes from old element
             $.each(this.attributes, function(i, attr){
-                // dont overwrite our href
-                if( attr.name !== 'href' ){
+
+                // dont overwrite our href and workarounds for IE
+                if(attr.value !== 'null' && attr.value !== '' && attr.name !== 'dataFormatAs' && attr.name !== 'href' ){
+                    // SMELL: would performance be better if we made just one call to attr with a map?
                     $newEl.attr(attr.name, attr.value);
                 }
             });

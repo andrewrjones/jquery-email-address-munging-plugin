@@ -85,7 +85,7 @@ YUI().use("console", function (Y) {
             var Assert = YUITest.Assert;
             
             Assert.areEqual($.fn.emailAddressMunging._createEmail("andrew [AT] arjones [DOT] co [DOT] uk"), "andrew@arjones.co.uk" );
-        },
+        }
     
     });
     
@@ -132,7 +132,7 @@ YUI().use("console", function (Y) {
             // tests
             Assert.areEqual(el.attr('href'), 'mailto:andrew@arjones.co.uk');
             Assert.areEqual(el.text(), 'andrew@arjones.co.uk');
-        },
+        }
     
     });    
 
@@ -142,7 +142,7 @@ YUI().use("console", function (Y) {
 
     //create the console
     var r = new Y.Console({
-        newestOnTop : false,
+        newestOnTop : false
     });
     
     r.render('#testLogger');
