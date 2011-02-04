@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Email Adress Munging Profiling</title>
+
+<!-- YUI Profiler stuff -->
+<script type="text/javascript" src="http://yui.yahooapis.com/3.2.0/build/yui/yui-min.js"></script>
+
+<!-- jQuery stuff -->
+<script src='http://code.jquery.com/jquery-1.4.4.js' type='text/javascript'></script>
+<script src='../src/jquery.emailaddressmunging.js' type='text/javascript'></script>
+<body>
+
+<div><p>
+The plan was to profile the setting of attributes, to see if there was a more effecient way. However, the result of this function call is nearly always 0ms, so there is no way of telling! Still checked it in, as its the first time I have used YUI Profiler, so worth keeping as an example.
+</p></div>
+
+<div>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+<span class="profile baz" href="foo" title="foo" style="color:red;" onclick="doThis();" ondblclick="doThat();" lang="en" dir="bar">andrew (at) arjones.co.uk</span>
+</div>
+
+<script type="text/javascript">
+
+// Create a new YUI instance and populate it with the required modules.
+YUI().use('profiler', function (Y) {
+ 
+    // Profiler is available and ready for use.
+    Y.Profiler.registerObject("emailAddressMunging", $.fn.emailAddressMunging);
+    
+    $('.profile').emailAddressMunging();
+    
+    var report = Y.Profiler.getFullReport(function(data){
+        return data.calls > 0;
+    });
+    
+    Y.Profiler.unregisterObject("emailAddressMunging");
+    
+    //output results
+    var msg = "";
+    for (var func in report){
+        msg += (func + "(): Called " + report[func].calls + " times. Avg: " +
+            report[func].avg + ", Min: " + report[func].min + ", Max: " + report[func].max) + "\n";
+    }
+    alert(msg);
+})
+
+
+</script>
+
+</body>
+</html>
