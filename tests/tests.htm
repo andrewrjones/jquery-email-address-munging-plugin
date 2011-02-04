@@ -85,6 +85,12 @@ YUI().use("console", function (Y) {
             var Assert = YUITest.Assert;
             
             Assert.areEqual($.fn.emailAddressMunging._createEmail("andrew [AT] arjones [DOT] co [DOT] uk"), "andrew@arjones.co.uk" );
+        },
+        
+        "should do andrew[AT]arjones[DOT]com": function(){
+            var Assert = YUITest.Assert;
+            
+            Assert.areEqual($.fn.emailAddressMunging._createEmail("andrew[AT]arjones[DOT]com"), "andrew@arjones.com" );
         }
     
     });
