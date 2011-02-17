@@ -1,0 +1,97 @@
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
+  %head
+    %title jQuery Email Address Munging Plugin
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    %link{:rel => "stylesheet", :href => "http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css", :type => "text/css"}
+    %link{:rel => "stylesheet", :href => "index.css", :type => "text/css"}
+    %script{:type => "text/javascript", :src  => "http://code.jquery.com/jquery-1.5.min.js"}
+    %script{:type => "text/javascript", :src  => "jquery.emailaddressmunging.js"}
+    :javascript
+        jQuery(document).ready(function($) {
+            $(".example-button").click(function(e){
+                e.preventDefault();
+                
+                var $el = $(this);
+                
+                // get the id of the example span
+                var id = $el.attr('id');
+                id = id.replace(/-button$/, '');
+                
+                // do the conversion
+                $('#'+id).emailAddressMunging();
+            });
+        });
+  %body
+    :plain
+      <a href="http://github.com/andrewrjones/jquery-email-address-munging-plugin/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+    %div{:id => "custom-doc", :class => "yui-t7"}
+      #hd
+        %h1 jQuery Email Address Munging Plugin
+      #bd
+        %div{:class => "yui-gc"}
+          %div{:class => "yui-u first"}
+            %p
+              This is a simple plugin for
+              %a{:href => "http://jquery.com"} jQuery 
+              that converts email addresses such as <code>you [at] example [dot] com</code> into clickable <code>mailto</code> links.
+            %p
+              The idea is to allow you to use
+              %a{:href => "http://en.wikipedia.org/wiki/Address_munging"} address munging
+              to fool the many spam bots out there, but provide a clickable link for real users who have JavaScript enabled.
+            %p
+              To use it, simply add the plugins JS file to the page and write your email address in your page, as follows:
+              %pre
+                :escaped
+                  <span class="email">you [at] example [dot] com</span>
+              Then use the following JS to initialise it:
+              %pre
+                :preserve
+                  jQuery(document).ready(function($) {
+                    $(".email").emailAddressMunging();
+                  });
+            %p
+              The examples to the right show the formats that are supported.
+            %h2 The Code
+            %p
+              You can download the source code from
+              %a{:href => "http://github.com/andrewrjones/jquery-email-address-munging-plugin/downloads"} GitHub
+              or go to the plugins
+              %a{:href => "http://andrew-jones.com/jquery-email-address-munging-plugin/"} homepage
+              for more information
+            %h2 Support
+            %p
+              Please use the
+              %a{:href => "http://github.com/andrewrjones/jquery-email-address-munging-plugin/issues" } GitHub issues tracker
+              for any bugs or issues.
+            %h2 License
+            %p
+              This code is available under the MIT License. See the
+              %a{:href => "LICENSE" } LICENSE
+              file for more details.
+          %div{:class => ["yui-u"]}
+            %div{:class => ["examples"]}
+              %h2 Examples
+              %div{:class => 'example-container'}
+                %div
+                  %span{:id => "ex-1", :class => 'example' } you [at] example [dot] com
+                %div{:class => 'example-button-container'}
+                  %button{:id => "ex-1-button", :class => 'example-button'} Convert
+              %div{:class => 'example-container'}
+                %div
+                  %span{:id => "ex-2", :class => 'example' } you [at] example [dot] co [dot] uk
+                %div{:class => 'example-button-container'}
+                  %button{:id => "ex-2-button", :class => 'example-button'} Convert
+              %div{:class => 'example-container'}
+                %div
+                  %span{:id => "ex-3", :class => 'example' } you (at) example (dot) com
+                %div{:class => 'example-button-container'}
+                  %button{:id => "ex-3-button", :class => 'example-button'} Convert
+              %div{:class => 'example-container'}
+                %div
+                  %span{:id => "ex-4", :class => 'example' } you[at]example[dot]com
+                %div{:class => 'example-button-container'}
+                  %button{:id => "ex-4-button", :class => 'example-button'} Convert
+      #ft
+        %p
+          &copy; 2011
+          %a{:href => "http://andrew-jones.com"} Andrew Jones
