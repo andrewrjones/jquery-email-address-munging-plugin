@@ -3,29 +3,28 @@
 
         return this.each(function() {
             var $el = $(this);
-            var $newEl;
-            
+
             // get email address
             var mail = $.fn.emailAddressMunging._createEmail($el.text());
-            
-            // make a new link element with email address
-            $newEl = $('<a href="mailto:'+ mail + '">' + mail + '</a>');
-            
+
+            var attributes = {};
             // copy attributes from old element
             $.each(this.attributes, function(i, attr){
 
                 // dont overwrite our href and workarounds for IE
                 if(attr.value !== 'null' && attr.value !== '' && attr.name !== 'dataFormatAs' && attr.name !== 'href' ){
-                    // SMELL: would performance be better if we made just one call to attr with a map?
-                    $newEl.attr(attr.name, attr.value);
+                    attributes[attr.name] = attr.value;
                 }
             });
-            
+
+            // make a new link element with email address
+            $newEl = $('<a href="mailto:'+ mail + '">' + mail + '</a>').attr(attributes);
+
             // replace existing element with our new one
             $el.replaceWith($newEl);
         });
     };
-    
+
     // creates the email adress from the parsed string
     $.fn.emailAddressMunging._createEmail = function(mail){
         // replace (at) and [at]
@@ -39,5 +38,4 @@
         
         return mail;
     };
-    
 })(jQuery);
