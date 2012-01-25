@@ -9,8 +9,13 @@
     %link{:rel => "stylesheet", :href => "index.css", :type => "text/css"}
     %script{:type => "text/javascript", :src  => "http://code.jquery.com/jquery-1.5.min.js"}
     %script{:type => "text/javascript", :src  => "jquery.emailaddressmunging.js"}
+    %script{:type => "text/javascript", :src  => "http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"}
+    %link{:rel => "stylesheet", :href => "http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css", :type => "text/css"}
     :javascript
         jQuery(document).ready(function($) {
+            try {
+                prettyPrint();
+            } catch(err) {}
             $(".btn").click(function(e){
                 e.preventDefault();
                 
@@ -43,11 +48,11 @@
               to fool the many spam bots out there, but provide a clickable link for real users who have JavaScript enabled.
             %p
               To use it, simply add the plugins JS file to the page and write your email address in your page, as follows:
-              %pre
+              %pre{:class => "prettyprint language-html"}
                 :escaped
                   <span class="email">you [at] example [dot] com</span>
               Then use the following JS to initialise it:
-              %pre
+              %pre{:class => "prettyprint language-js"}
                 :preserve
                   jQuery(document).ready(function($) {
                     $(".email").emailAddressMunging();
