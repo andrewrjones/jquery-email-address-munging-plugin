@@ -1,3 +1,6 @@
 [submodule "ext/yuitest"]
 	path = ext/yuitest
 	url = https://github.com/yui/yuitest.git
+[submodule ".\\ext/bootstrap"]
+	path = .\\ext/bootstrap
+	url = git://github.com/twitter/bootstrap.git
