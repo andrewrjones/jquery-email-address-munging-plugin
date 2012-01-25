@@ -1,14 +1,17 @@
+!!! 5
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
   %head
     %title jQuery Email Address Munging Plugin
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
-    %link{:rel => "stylesheet", :href => "http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css", :type => "text/css"}
+    /[if lt IE 9]
+      %script{:type => "text/javascript", :src  => "http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    %link{:rel => "stylesheet", :href => "bootstrap.min.css", :type => "text/css"}
     %link{:rel => "stylesheet", :href => "index.css", :type => "text/css"}
     %script{:type => "text/javascript", :src  => "http://code.jquery.com/jquery-1.5.min.js"}
     %script{:type => "text/javascript", :src  => "jquery.emailaddressmunging.js"}
     :javascript
         jQuery(document).ready(function($) {
-            $(".example-button").click(function(e){
+            $(".btn").click(function(e){
                 e.preventDefault();
                 
                 var $el = $(this);
@@ -24,12 +27,12 @@
   %body
     :plain
       <a href="http://github.com/andrewrjones/jquery-email-address-munging-plugin/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
-    %div{:id => "custom-doc", :class => "yui-t7"}
-      #hd
-        %h1 jQuery Email Address Munging Plugin
-      #bd
-        %div{:class => "yui-gc"}
-          %div{:class => "yui-u first"}
+    %div{:class => "container"}
+      %div{:class => "content"}
+        %div{:class => "page-header"}
+          %h1 jQuery Email Address Munging Plugin
+        %div{:class => "row"}
+          %div{:class => "span10"}
             %p
               This is a simple plugin for
               %a{:href => "http://jquery.com"} jQuery 
@@ -68,30 +71,29 @@
               This code is available under the MIT License. See the
               %a{:href => "LICENSE" } LICENSE
               file for more details.
-          %div{:class => ["yui-u"]}
-            %div{:class => ["examples"]}
-              %h2 Examples
-              %div{:class => 'example-container'}
-                %div
-                  %span{:id => "ex-1", :class => 'example' } you [at] example [dot] com
-                %div{:class => 'example-button-container'}
-                  %button{:id => "ex-1-button", :class => 'example-button'} Convert
-              %div{:class => 'example-container'}
-                %div
-                  %span{:id => "ex-2", :class => 'example' } you [at] example [dot] co [dot] uk
-                %div{:class => 'example-button-container'}
-                  %button{:id => "ex-2-button", :class => 'example-button'} Convert
-              %div{:class => 'example-container'}
-                %div
-                  %span{:id => "ex-3", :class => 'example' } you (at) example (dot) com
-                %div{:class => 'example-button-container'}
-                  %button{:id => "ex-3-button", :class => 'example-button'} Convert
-              %div{:class => 'example-container'}
-                %div
-                  %span{:id => "ex-4", :class => 'example' } you[at]example[dot]com
-                %div{:class => 'example-button-container'}
-                  %button{:id => "ex-4-button", :class => 'example-button'} Convert
-      #ft
+          %div{:class => ["span4"]}
+            %h2 Examples
+            %div{:class => 'example-container'}
+              %div
+                %span{:id => "ex-1", :class => 'example' } you [at] example [dot] com
+              %div{:class => 'example-button-container'}
+                %button{:id => "ex-1-button", :class => 'btn small'} Convert
+            %div{:class => 'example-container'}
+              %div
+                %span{:id => "ex-2", :class => 'example' } you [at] example [dot] co [dot] uk
+              %div{:class => 'example-button-container'}
+                %button{:id => "ex-2-button", :class => 'btn small'} Convert
+            %div{:class => 'example-container'}
+              %div
+                %span{:id => "ex-3", :class => 'example' } you (at) example (dot) com
+              %div{:class => 'example-button-container'}
+                %button{:id => "ex-3-button", :class => 'btn small'} Convert
+            %div{:class => 'example-container'}
+              %div
+                %span{:id => "ex-4", :class => 'example' } you[at]example[dot]com
+              %div{:class => 'example-button-container'}
+                %button{:id => "ex-4-button", :class => 'btn small'} Convert
+      %footer
         %p
-          &copy; 2011
+          &copy; 2012
           %a{:href => "http://andrew-jones.com"} Andrew Jones

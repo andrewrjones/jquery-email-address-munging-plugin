@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <project name="jquery-email-address-munging-plugin" default="build" basedir=".">
-    <property name="VERSION" value="0.1" />
+    <property name="VERSION" value="0.2" />
     
     <property environment="env"/>
     <property name="BUILD_DIR" value="build" />
@@ -9,7 +9,7 @@
     <property name="SOURCE_DIR" value="src" />
     <property name="YUI_COMPRESSOR" value="${env.YUI_COMPRESSOR}" />
 
-    <target name="build" depends="clean, compile_haml, compile_scss, bundle_javascript, compress_javascript, copy_misc_files, zip" />
+    <target name="build" depends="clean, compile_haml, compile_scss, copy_bootstrap, bundle_javascript, compress_javascript, copy_misc_files, zip" />
 
     <target name="compile_haml">
         <echo>Compiling HTML Files From Haml...</echo>
@@ -31,6 +31,14 @@
             <targetfile/>
         </apply>
         <echo>Sass Done</echo>
+    </target>
+    
+    <target name="copy_bootstrap">
+        <echo>Copying Bootstrap...</echo>
+        <concat destfile="${BUILD_DIR}/bootstrap.min.css">
+            <filelist dir="ext/bootstrap" files="bootstrap.min.css"/>
+        </concat>
+        <echo>Bootstrap Done</echo>
     </target>
 
     <target name="bundle_javascript">
