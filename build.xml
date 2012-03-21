@@ -4,10 +4,12 @@
     <property name="VERSION" value="0.2" />
     
     <property environment="env"/>
-    <property name="BUILD_DIR" value="build" />
-    <property name="DOCS_DIR" value="docs" />
-    <property name="SOURCE_DIR" value="src" />
-    <property name="YUI_COMPRESSOR" value="${env.YUI_COMPRESSOR}" />
+    
+    <property name="BUILD_DIR" value="${basedir}/build" />
+    <property name="DOCS_DIR" value="${basedir}/docs" />
+    <property name="SOURCE_DIR" value="${basedir}/src" />
+    <property name="EXT_DIR" value="${basedir}/ext" />
+    <property name="YUI_COMPRESSOR" value="${EXT_DIR}/yuicompressor/build/yuicompressor-2.4.8pre.jar" />
 
     <target name="build" depends="compile_haml, compile_scss, copy_bootstrap, bundle_javascript, compress_javascript, copy_misc_files, zip" />
 
@@ -48,7 +50,7 @@
     <target name="copy_bootstrap">
         <echo>Copying Bootstrap...</echo>
         <concat destfile="${BUILD_DIR}/bootstrap.min.css">
-            <filelist dir="ext/bootstrap" files="bootstrap.min.css"/>
+            <filelist dir="${EXT_DIR}/bootstrap" files="bootstrap.min.css"/>
         </concat>
         <echo>Bootstrap Done</echo>
     </target>
