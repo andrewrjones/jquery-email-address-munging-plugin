@@ -18,7 +18,7 @@
             });
 
             // make a new link element with email address
-            $newEl = $('<a href="mailto:'+ mail + '">' + mail + '</a>').attr(attributes);
+            var $newEl = $('<a href="mailto:'+ mail + '">' + mail + '</a>').attr(attributes);
 
             // replace existing element with our new one
             $el.replaceWith($newEl);
@@ -38,4 +38,4 @@
         
         return mail;
     };
-})(jQuery);
+}(jQuery));
