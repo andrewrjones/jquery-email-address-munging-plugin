@@ -1,0 +1,29 @@
+{
+  "name": "jquery.emailaddressmunging",
+  "title": "jQuery Email Address Munging Plugin",
+  "description": "Simple jQuery plugin that converts email addresses such as you [at] example [dot] com into clickable mailto links.",
+  "version": "0.2.0",
+  "homepage": "http://andrew-jones.com/jquery-email-address-munging-plugin/",
+  "author": {
+    "name": "Andrew Jones",
+    "email": "andrewjones86@googlemail.com",
+    "url": "http://andrew-jones.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrewrjones/jquery-email-address-munging-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andrewrjones/jquery-email-address-munging-plugin/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://andrew-jones.com/jquery-email-address-munging-plugin/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~1.5"
+  },
+  "keywords": []
+}
