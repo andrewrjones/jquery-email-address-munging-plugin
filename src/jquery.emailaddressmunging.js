@@ -1,4 +1,6 @@
 (function($) {
+    "use strict";
+    
     $.fn.emailAddressMunging = function(opts) {
 
         return this.each(function() {
