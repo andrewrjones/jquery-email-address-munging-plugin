@@ -92,4 +92,9 @@ module.exports = function(grunt) {
       grunt.file.copy(f, "dist/" + name);
     });
   });
+  
+  grunt.registerTask('clean', 'clean dist dir', function(){
+    var shell = require('shelljs');
+    shell.rm('dist/*');
+  });
 };
