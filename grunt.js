@@ -23,6 +23,12 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
+    haml: {
+      index: {
+        src: "docs/index.haml",
+        dest: "dist/index.htm"
+      }
+    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -59,16 +65,7 @@ module.exports = function(grunt) {
   
   grunt.registerTask('dist', 'default haml sass copy');
 
-  // for now, cheat
-  // TODO: use haml-js
-  grunt.registerTask('haml', 'Run haml on files', function() {
-    var exec = require('child_process').exec,
-        child;
-        
-    child = exec('haml docs/index.haml dist/index.htm',
-      function (error, stdout, stderr) {
-    });
-  });
+  grunt.loadNpmTasks('grunt-haml');
 
   // for now, cheat
   // TODO: convert to less, create task
