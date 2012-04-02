@@ -25,5 +25,9 @@
   "dependencies": {
     "jquery": "~1.5"
   },
+  "devDependencies": {
+    "grunt": "~0.3",
+    "grunt-haml": "~0.1"
+  },
   "keywords": []
 }
