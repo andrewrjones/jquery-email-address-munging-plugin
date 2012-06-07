@@ -23,10 +23,13 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
-    haml: {
-      index: {
-        src: "docs/index.haml",
-        dest: "dist/index.htm"
+    jade: {
+      html: {
+        src: ["docs/index.jade"],
+        dest: "dist",
+        options: {
+          client: false
+        }
       }
     },
     less: {
@@ -69,9 +72,9 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'lint qunit concat min');
   
-  grunt.registerTask('dist', 'default haml less copy');
+  grunt.registerTask('dist', 'default jade less copy');
 
-  grunt.loadNpmTasks('grunt-haml');
+  grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-less');
   
   // TODO: create generic copy task
