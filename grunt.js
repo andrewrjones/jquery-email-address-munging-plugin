@@ -23,10 +23,19 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
-    haml: {
+    jade: {
+      html: {
+        src: ["docs/index.jade"],
+        dest: "dist",
+        options: {
+          client: false
+        }
+      }
+    },
+    less: {
       index: {
-        src: "docs/index.haml",
-        dest: "dist/index.htm"
+        src: "docs/index.less",
+        dest: "dist/index.css"
       }
     },
     qunit: {
@@ -63,20 +72,10 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'lint qunit concat min');
   
-  grunt.registerTask('dist', 'default haml sass copy');
+  grunt.registerTask('dist', 'default jade less copy');
 
-  grunt.loadNpmTasks('grunt-haml');
-
-  // for now, cheat
-  // TODO: convert to less, create task
-  grunt.registerTask('sass', 'Run sass on files', function() {
-    var exec = require('child_process').exec,
-        child;
-        
-    child = exec('sass docs/index.scss dist/index.css',
-      function (error, stdout, stderr) {
-    });
-  });
+  grunt.loadNpmTasks('grunt-jade');
+  grunt.loadNpmTasks('grunt-less');
   
   // TODO: create generic copy task
   grunt.registerTask('copy', 'Copy misc files to dist', function() {
