@@ -34,5 +34,8 @@
     "grunt-contrib-clean": "*",
     "grunt-less": "*"
   },
+  "scripts": {
+    "test": "grunt test"
+  },
   "keywords": []
 }
