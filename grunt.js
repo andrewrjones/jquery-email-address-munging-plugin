@@ -11,6 +11,9 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
+    server: {
+        port: 8085
+    },
     concat: {
       dist: {
         src: ['<banner>', '<file_strip_banner:src/<%= pkg.name %>.js>'],
@@ -39,7 +42,9 @@ module.exports = function(grunt) {
       }
     },
     qunit: {
-      files: ['test/**/*.html']
+      urls: ['1.9.0', '2.0.0b1'].map(function(version) {
+        return 'http://localhost:<%= server.port %>/test/jquery.emailaddressmunging.html?jquery=' + version;
+      })
     },
     lint: {
       files: ['grunt.js', 'src/**/*.js', 'test/**/*.js']
@@ -70,9 +75,9 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint qunit concat min');
-  
-  grunt.registerTask('dist', 'default jade less copy');
+  grunt.registerTask('default', 'test dist');
+  grunt.registerTask('test', 'server lint qunit');
+  grunt.registerTask('dist', 'concat min jade less copy');
 
   grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-less');
