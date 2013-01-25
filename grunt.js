@@ -80,7 +80,7 @@ module.exports = function(grunt) {
   grunt.registerTask('dist', 'concat min jade less copy');
 
   grunt.loadNpmTasks('grunt-jade');
-  grunt.loadNpmTasks('grunt-less');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-beautify');
 
   grunt.registerTask('tidy', 'beautify');
