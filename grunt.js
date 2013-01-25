@@ -56,6 +56,16 @@ module.exports = function(grunt) {
       files: '<config:lint.files>',
       tasks: 'lint qunit'
     },
+    copy: {
+      dist: {
+        options: {
+          flatten: true
+        },
+        files: {
+          'dist/': ['CHANGES', 'LICENSE', 'README', 'ext/bootstrap/bootstrap.min.css']
+        }
+      }
+    },
     jshint: {
       options: {
         curly: true,
@@ -83,23 +93,9 @@ module.exports = function(grunt) {
   grunt.registerTask('dist', 'concat min jade less copy');
 
   grunt.loadNpmTasks('grunt-jade');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-beautify');
 
   grunt.registerTask('tidy', 'beautify');
-  
-  // TODO: create generic copy task
-  grunt.registerTask('copy', 'Copy misc files to dist', function() {
-    var files = [
-      'CHANGES',
-      'LICENSE',
-      'README',
-      'ext/bootstrap/bootstrap.min.css'
-    ];
-    
-    files.forEach(function(f) {
-      var name = f.split("/").pop();
-      grunt.file.copy(f, "dist/" + name);
-    });
-  });
 };
