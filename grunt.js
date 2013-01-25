@@ -66,6 +66,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    clean: ['dist'],
     jshint: {
       options: {
         curly: true,
@@ -95,6 +96,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-beautify');
 
   grunt.registerTask('tidy', 'beautify');

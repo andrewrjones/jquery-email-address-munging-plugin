@@ -31,6 +31,7 @@
     "grunt-beautify": "*",
     "grunt-contrib-less": "*",
     "grunt-contrib-copy": "*",
+    "grunt-contrib-clean": "*",
     "grunt-less": "*"
   },
   "keywords": []
