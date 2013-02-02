@@ -28,7 +28,14 @@
   "devDependencies": {
     "grunt": "~0.3",
     "grunt-jade": "*",
+    "grunt-beautify": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-clean": "*",
     "grunt-less": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
   },
   "keywords": []
 }

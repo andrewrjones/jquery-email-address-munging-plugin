@@ -11,6 +11,9 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
+    server: {
+        port: 8085
+    },
     concat: {
       dist: {
         src: ['<banner>', '<file_strip_banner:src/<%= pkg.name %>.js>'],
@@ -39,15 +42,31 @@ module.exports = function(grunt) {
       }
     },
     qunit: {
-      files: ['test/**/*.html']
+      urls: ['1.9.0', '2.0.0b1'].map(function(version) {
+        return 'http://localhost:<%= server.port %>/test/jquery.emailaddressmunging.html?jquery=' + version;
+      })
     },
     lint: {
       files: ['grunt.js', 'src/**/*.js', 'test/**/*.js']
+    },
+    beautify: {
+      files: '<config:lint.files>'
     },
     watch: {
       files: '<config:lint.files>',
       tasks: 'lint qunit'
     },
+    copy: {
+      dist: {
+        options: {
+          flatten: true
+        },
+        files: {
+          'dist/': ['CHANGES', 'LICENSE', 'README', 'ext/bootstrap/bootstrap.min.css']
+        }
+      }
+    },
+    clean: ['dist'],
     jshint: {
       options: {
         curly: true,
@@ -70,30 +89,15 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint qunit concat min');
-  
-  grunt.registerTask('dist', 'default jade less copy');
+  grunt.registerTask('default', 'test dist');
+  grunt.registerTask('test', 'server lint qunit');
+  grunt.registerTask('dist', 'concat min jade less copy');
 
   grunt.loadNpmTasks('grunt-jade');
-  grunt.loadNpmTasks('grunt-less');
-  
-  // TODO: create generic copy task
-  grunt.registerTask('copy', 'Copy misc files to dist', function() {
-    var files = [
-      'CHANGES',
-      'LICENSE',
-      'README',
-      'ext/bootstrap/bootstrap.min.css'
-    ];
-    
-    files.forEach(function(f) {
-      var name = f.split("/").pop();
-      grunt.file.copy(f, "dist/" + name);
-    });
-  });
-  
-  grunt.registerTask('clean', 'clean dist dir', function(){
-    var shell = require('shelljs');
-    shell.rm('dist/*');
-  });
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-beautify');
+
+  grunt.registerTask('tidy', 'beautify');
 };
