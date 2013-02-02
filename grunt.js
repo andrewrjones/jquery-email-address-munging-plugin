@@ -66,6 +66,32 @@ module.exports = function(grunt) {
         }
       }
     },
+    compress: {
+      zip: {
+        options: {
+          mode: "zip",
+          rootDir: "jquery-email-address-munging-plugin"
+        },
+        files: {
+          "jquery-email-address-munging-plugin-<%= pkg.version %>.zip": ["dist/**"]
+        }
+      }
+    },
+    // secret.json contains the host, username and password for a server to
+    // scp to
+    secret: '<json:secret.json>',
+    sftp: {
+      deploy: {
+        files: {
+          "./": "jquery-email-address-munging-plugin-<%= pkg.version %>.zip"
+        },
+        options: {
+          host: '<%= secret.host %>',
+          username: '<%= secret.username %>',
+          password: '<%= secret.password %>'
+        }
+      }
+    },
     clean: ['dist'],
     jshint: {
       options: {
@@ -91,13 +117,16 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'test dist');
   grunt.registerTask('test', 'server lint qunit');
-  grunt.registerTask('dist', 'concat min jade less copy');
+  grunt.registerTask('dist', 'jade less concat min copy compress');
+  grunt.registerTask('deploy', 'dist sftp');
 
   grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-beautify');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-ssh');
 
   grunt.registerTask('tidy', 'beautify');
 };

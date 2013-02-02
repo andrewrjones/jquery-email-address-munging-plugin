@@ -7,3 +7,5 @@ dist
 node_modules
 npm-debug.log
 *swp
+jquery-email-address-munging-plugin*zip
+secret.json
