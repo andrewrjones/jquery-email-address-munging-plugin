@@ -77,7 +77,7 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'dist/': ['dist/index.html']
+          './': ['dist/index.html']
         }
       },
       deploy: {
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'dist/': ['dist/index.html']
+          './': ['dist/index.html']
         }
       }
     },
