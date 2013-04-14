@@ -57,7 +57,7 @@ module.exports = function (grunt) {
     qunit: {
       all: {
         options: {
-          urls: ['1.9.1', '2.0.0b3'].map(function (version) {
+          urls: ['1.9.1', '2.0.0-beta3'].map(function (version) {
             return 'http://localhost:<%= connect.server.options.port %>/test/jquery.emailaddressmunging.html?jquery=' + version;
           })
         }
