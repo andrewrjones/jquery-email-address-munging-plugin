@@ -74,12 +74,11 @@ module.exports = function (grunt) {
       dist: {
         options: {
           variables: {
-            'version': '<%= pkg.version %>',
-            'piwik': ''
+            'version': '<%= pkg.version %>'
           }
         },
         files: {
-          './': ['dist/index.html']
+          'dist/index.html': ['dist/index.html']
         }
       },
       deploy: {
@@ -122,22 +121,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-    // secret.json contains the host, username and password for a server to
-    // scp to
-    secret: grunt.file.readJSON('secret.json'),
-    sftp: {
-      deploy: {
-        files: {
-          "./": "jquery-email-address-munging-plugin-<%= pkg.version %>.zip"
-        },
-        options: {
-          host: '<%= secret.host %>',
-          username: '<%= secret.username %>',
-          password: '<%= secret.password %>',
-          path: '<%= secret.path %>'
-        }
-      }
-    },
     clean: ['dist', '*zip'],
     jshint: {
       options: {
@@ -167,7 +150,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['connect', 'jshint', 'qunit']);
   grunt.registerTask('build', ['jade', 'less', 'concat', 'uglify', 'cssmin', 'copy']);
   grunt.registerTask('dist', ['build', 'replace:dist', 'compress']);
-  grunt.registerTask('deploy', ['build', 'replace:deploy', 'replace:dist', 'compress', 'sftp']);
 
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -183,7 +165,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-beautify');
-  grunt.loadNpmTasks('grunt-ssh');
   grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('tidy', 'beautify');
